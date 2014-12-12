@@ -4,10 +4,16 @@ project (sharedextern)
 set(CMAKE_BUILD_TYPE Release)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-add_library(secore SHARED src/core.cpp)
 
-add_library(seutil SHARED src/util.cpp)
-target_link_libraries(seutil secore)
+add_library(extcontext SHARED src/context.cpp)
+
+add_library(secore src/core.cpp)
+add_library(secoreshared SHARED)
+target_link_libraries(secoreshared secore)
+
+add_library(seutil src/util.cpp)
+add_library(seutilshared SHARED)
+target_link_libraries(seutilshared secore seutil)
 
 add_executable(seapp src/app.cpp)
-target_link_libraries(seapp secore seutil)
+target_link_libraries(seapp extcontext secoreshared seutilshared)

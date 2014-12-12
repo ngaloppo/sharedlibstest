@@ -4,7 +4,7 @@
 int main()
 {
     se_init();
-    se_context context = se_get_context();
+    ext_context context = se_get_context();
     printf("app: %p\n", context);
 
     se_util_run();
