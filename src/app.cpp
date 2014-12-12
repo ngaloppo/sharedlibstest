@@ -7,6 +7,7 @@ int main()
     ext_context context = se_get_context();
     printf("app: %p\n", context);
 
+    //se_init();
     se_util_run();
 
     return 0;
